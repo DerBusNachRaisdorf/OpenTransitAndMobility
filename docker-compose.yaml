@@ -1,0 +1,46 @@
+services:
+  # webserver for hosting the api and the website
+  webserver:
+    depends_on:
+      - database
+    build: .
+    container_name: public-transport-webserver
+    restart: unless-stopped
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      RUST_BACKTRACE: 1
+    ports:
+      - ${WEBSERVER_PORT}:8080
+    volumes:
+      - type: bind
+        source: ./resources
+        target: /home/resources
+  # database for the webserver
+  database:
+    container_name: public-transport-database
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      TZ: "GMT+2"
+      PGTZ: "GMT+2"
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - ${DATABASE_PORT}:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+  # martin tileserver for maps
+  tileserver:
+    container_name: public-transport-tileserver
+    build:
+      context: tile_server/
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+volumes:
+  database:

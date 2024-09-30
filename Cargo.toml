@@ -1,0 +1,65 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/gtfs",
+    "crates/web",
+    "crates/utility",
+    "crates/deutsche_bahn",
+    "crates/public_transport",
+    "crates/model",
+    "crates/database",
+    "crates/actors",
+    "crates/playground",
+    "crates/gbfs",
+]
+
+[workspace.dependencies]
+web = { path = "crates/web" }
+utility = { path = "crates/utility" }
+gtfs = { path = "crates/gtfs" }
+gbfs = { path = "crates/gbfs" }
+model = { path = "crates/model" }
+database = { path = "crates/database" }
+public_transport = { path = "crates/public_transport" }
+actors = { path = "crates/actors" }
+deutsche_bahn = { path = "crates/deutsche_bahn" }
+
+# utility
+indexmap = "2.4.0"
+itertools = "0.13.0"
+
+# logging
+env_logger = "0.11.5"
+log = "0.4.22"
+
+# async runtime
+tokio = { version = "1.38.0", features = ["full"] }
+tokio-util = "0.7.11"
+tokio-stream = "0.1"
+futures = "0.3.30"
+async-trait = "0.1.81"
+
+# web server
+axum = { version = "0.7", features = ["macros"] }
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+tower-http = { version = "0.5", features = ["fs", "trace"] }
+tower-cookies = "0.10"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+headers = "0.4"
+
+# http requests
+reqwest = { version = "0.12.5", features = ["json", "cookies"] }
+cookie = "0.18.1"
+
+# serialization
+serde = { version = "1", features = ["derive"] }
+serde_repr = "0.1.19"
+serde_json = "1"
+serde-xml-rs = "0.6.0"
+csv = "1.3.0"
+serde_with = "3"
+schemars = { version = "0.8.16", features = ["chrono"] }
+
+# date and time
+chrono = { version = "=0.4.38", features = ["serde"] }

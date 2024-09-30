@@ -1,0 +1,15 @@
+[package]
+name = "actors"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# logging
+env_logger.workspace = true
+log.workspace = true
+
+# async runtime
+tokio.workspace = true
+futures.workspace = true
+async-trait.workspace = true

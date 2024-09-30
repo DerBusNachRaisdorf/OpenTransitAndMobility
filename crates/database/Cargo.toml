@@ -1,0 +1,28 @@
+[package]
+name = "database"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+model.workspace = true
+public_transport.workspace = true
+utility.workspace = true
+
+# async runtime
+tokio.workspace = true
+async-trait.workspace = true
+
+# database
+sqlx = { version = "0.7", features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "postgres",
+    "chrono",
+] }
+
+# serialization
+serde.workspace = true
+
+# date and time
+chrono.workspace = true

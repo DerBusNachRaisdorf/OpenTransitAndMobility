@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Public Transport</title>
+        <link href="style.css" rel="stylesheet" />
+        <link href="searchbar.css" rel="stylesheet" />
+        <!-- maplibre -->
+        <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+        <link
+            href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css"
+            rel="stylesheet"
+        />
+        <style></style>
+    </head>
+    <body>
+        <div id="map">
+            <div
+                id="left-sidebar"
+                class="sidebar flex-center left collapsed rounded-rect hidden"
+            >
+                <div
+                    class="sidebar-content rounded-rect flex-center blur border shadow"
+                >
+                    <!-- datetime picker -->
+                    <div class="datetimepicker">
+                        <input
+                            id="datetime-input"
+                            type="datetime-local"
+                            step="60"
+                        />
+                    </div>
+                    <!-- loader -->
+                    <div id="loader-container">
+                        <div id="loader"></div>
+                    </div>
+                    <!-- content -->
+                    <div
+                        style="display: none"
+                        id="left-sidebar-content"
+                        class="animate-bottom rounded-rect"
+                    ></div>
+                    <!-- toggle button -->
+                    <div
+                        id="sidebar-toggle-button"
+                        class="sidebar-toggle rounded-rect left blur border shadow"
+                    >
+                        Zur Karte
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-container"></div>
+        <script type="module" src="/index.js"></script>
+    </body>
+</html>

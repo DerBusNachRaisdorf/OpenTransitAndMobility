@@ -1,0 +1,23 @@
+[package]
+name = "public_transport"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+model.workspace = true
+utility.workspace = true
+actors.workspace = true
+
+# async runtime
+tokio.workspace = true
+futures.workspace = true
+async-trait.workspace = true
+
+# serialization
+serde.workspace = true
+serde_json.workspace = true
+serde_with.workspace = true
+schemars.workspace = true
+
+# date and time
+chrono.workspace = true

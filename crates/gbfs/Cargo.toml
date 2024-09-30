@@ -1,0 +1,15 @@
+[package]
+name = "gbfs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+public_transport.workspace = true
+model.workspace = true
+utility.workspace = true
+
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+async-trait.workspace = true

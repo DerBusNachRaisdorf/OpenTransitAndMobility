@@ -1,0 +1,421 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+html,
+body,
+#map {
+    height: 100%;
+}
+
+.close {
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 12px 16px;
+    margin-right: 12px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.close:hover {
+    background: #bbb4;
+}
+
+/*
+@media (max-width: 899px) {
+    #left-sidebar {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    #left-sidebar {
+        width: 396px !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1919px) {
+    #left-sidebar {
+        width: 33.33% !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    #left-sidebar {
+        width: 633.6px !important;
+    }
+}
+*/
+
+.collapsible {
+    background-color: #eeeeee00;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    padding-top: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+
+    /* train image */
+    transition: all ease-in-out 0.3s;
+    background-repeat: no-repeat;
+    background-size: 25%;
+    background-position:
+        /*right top*/ 104% 25%;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #cccccc66;
+
+    /* train image */
+    background-repeat: no-repeat;
+    background-size: 25%;
+    background-position:
+        /*right top*/ 100% 25%;
+}
+
+/*
+ without animation:
+.collapsible-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f188;
+}
+*/
+
+.collapsible-content {
+    /*padding: 0 18px;*/
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f1f1f188;
+    transition: max-height 0.2s ease-out;
+}
+
+.stop-time {
+    background-color: #eeeeee00;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.stop-time-name {
+}
+
+.stop-time-arrival {
+    justify-self: end;
+}
+
+.active,
+.stop-time:hover {
+    background-color: #cccccc66;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.2s ease-in-out,
+        visibility 0s linear 1s;
+}
+
+.line {
+    background-color: #aa225588; /* Farbe des Hintergrunds */
+    border-radius: 4px; /* Abgerundete Ecken */
+    padding: 4px; /* Innenabstand um den Text herum */
+    padding-left: 8px;
+    padding-right: 8px;
+    color: white; /* Textfarbe */
+    font-size: 12px; /* Schriftgröße */
+    display: inline-block; /* Damit das Element nur so groß wie nötig ist */
+}
+
+.line-inactive {
+    background-color: #bbb; /* Farbe des Hintergrunds */
+    border-radius: 4px; /* Abgerundete Ecken */
+    padding: 4px; /* Innenabstand um den Text herum */
+    padding-left: 8px;
+    padding-right: 8px;
+    color: white; /* Textfarbe */
+    font-size: 12px; /* Schriftgröße */
+    display: inline-block; /* Damit das Element nur so groß wie nötig ist */
+}
+
+.line-container {
+    display: flex; /* Flexbox-Layout aktivieren */
+    gap: 10px; /* Abstand zwischen den Elementen */
+    flex-wrap: wrap;
+    padding: 18px;
+    padding-top: 0px;
+    overflow-x: auto;
+}
+
+.description-container {
+    font-family: Helvetica;
+    text-align: center;
+    padding: 18px;
+    padding-top: 0px;
+}
+
+.debug-id {
+    font-family: monospace;
+    text-align: left;
+    color: gray;
+    font-size: 12px;
+    padding-top: 0px;
+}
+
+/* sidebar */
+
+.rounded-rect {
+    /*background: white;*/
+    border-radius: 10px;
+}
+
+.shadow {
+    box-shadow: 0 0 50px -25px black;
+}
+
+.flex-center {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center.left {
+    left: 0px;
+}
+
+.flex-center.right {
+    right: 0px;
+}
+
+.sidebar-header {
+    padding: 20px;
+    overflow: hidden;
+    align-items: center;
+    font-size: 24px;
+    color: gray;
+}
+
+.sidebar-content {
+    position: absolute;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: gray;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 899px) {
+    .sidebar-content {
+        height: calc(100% - 170px);
+    }
+}
+
+#left-sidebar-content {
+    overflow: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    width: 100%;
+    scrollbar-width: none; /* TODO: button at bottom to scroll further down. */
+}
+
+.sidebar-toggle {
+    display: none;
+}
+
+@media (max-width: 899px) {
+    .sidebar-toggle {
+        position: absolute;
+        width: 100%;
+        height: 55px;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+    }
+
+    .sidebar-toggle.left {
+        bottom: calc(-55px - 15px);
+    }
+
+    .sidebar-toggle.right {
+        left: -1.5em;
+    }
+}
+
+.sidebar-toggle:hover {
+    color: #0aa1cf;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: relative;
+    transition: transform 1s;
+    z-index: 1;
+    width: 400px;
+    height: 100%;
+}
+
+@media (max-width: 899px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+/*
+  The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
+  The toggleSidebar() function removes this class from the element in order to expand it.
+*/
+.left.collapsed {
+    transform: translateX(-395px);
+}
+
+.right.collapsed {
+    transform: translateX(395px);
+}
+
+.blur {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.border {
+    border: 1px solid #bbb;
+}
+
+/* loader */
+
+#loader-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Set height to show vertical centering */
+    width: 100%;
+}
+
+/* Center the loader */
+#loader {
+    /*
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    */
+    width: 120px;
+    height: 120px;
+    /*margin: -76px 0 0 -76px;*/
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #aa2255;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+    to {
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0;
+    }
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+/* Wrap new scrollbar properties in @supports rule for browsers without `::-webkit-scrollbar-*` support */
+/* This way chrome won't override `::-webkit-scrollbar-*` selectors */
+@supports not selector(::-webkit-scrollbar) {
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--thumb-color) var(--track-color);
+    }
+}
+
+/* date time picker */
+.datetimepicker {
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    border: 4px solid #aa225544;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    &:focus-within {
+        border-color: #aa2255ff;
+    }
+
+    input {
+        font: inherit;
+        color: inherit;
+        appearance: none;
+        outline: none;
+        border: 0;
+        background-color: transparent;
+    }
+}
+
+.trip-table {
+    width: 75%;
+}
+
+table {
+    border-collapse: collapse;
+}

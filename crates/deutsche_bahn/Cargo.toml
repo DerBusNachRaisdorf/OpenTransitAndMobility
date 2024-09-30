@@ -1,0 +1,26 @@
+[package]
+name = "deutsche_bahn"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+public_transport.workspace = true
+model.workspace = true
+
+async-trait.workspace = true
+
+# logging
+env_logger.workspace = true
+log.workspace = true
+
+chrono = "0.4.38"
+reqwest.workspace = true
+serde.workspace = true
+serde-xml-rs.workspace = true
+serde_json.workspace = true
+serde_with.workspace = true
+tokio.workspace = true
+phf = { version = "0.11", features = ["macros"] }
+futures.workspace = true

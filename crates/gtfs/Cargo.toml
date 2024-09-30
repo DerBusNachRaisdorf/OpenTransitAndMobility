@@ -1,0 +1,41 @@
+[package]
+name = "gtfs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+public_transport.workspace = true
+model.workspace = true
+utility.workspace = true
+
+# logging
+env_logger.workspace = true
+log.workspace = true
+
+# async runtime
+tokio.workspace = true
+async-trait.workspace = true
+
+# http requests
+reqwest.workspace = true
+cookie.workspace = true
+
+# extracting zip files
+zip = "=2.1.3"
+
+# serialization
+serde.workspace = true
+serde_repr.workspace = true
+serde_with.workspace = true
+serde_json.workspace = true
+csv.workspace = true
+
+# date and time
+chrono.workspace = true
+
+# protobuf
+prost = "0.12"
+prost-types = "0.12" # Only necessary if using Protobuf well-known types:
+
+[build-dependencies]
+prost-build = "0.12.6"

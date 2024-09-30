@@ -1,0 +1,11 @@
+[package]
+name = "utility"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# serialization
+serde.workspace = true
+schemars.workspace = true
+chrono.workspace = true
